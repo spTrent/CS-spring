@@ -20,12 +20,45 @@ void clean_tree(Node* root);
 int main(void) {
     srand(time(NULL));
     Node* root = NULL;
-    add_node(10, &root);
-    for (int i = 0; i < 10; ++i) {
-        add_node(rand() % 100 - 50, &root);
+    int operation = 0;
+    int current_data = 0;
+    while (1) {
+        printf("Введите операцию:\n");
+        printf("1. Напечатать дерево\n");
+        printf("2. Добавить узел\n");
+        printf("3. Удалить узел\n");
+        printf("4. Посчитать количество вершин\n");
+        printf("5. Закончить программу\n");
+        scanf("%d", &operation);
+        if (operation == 1) {
+            draw_tree(root, 0);
+        }
+        else if (operation == 2) {
+            printf("Введите значение нового узла:\n");
+            scanf("%d", &current_data);
+            add_node(current_data, &root);
+        }
+        else if (operation == 3) {
+            printf("Введите значение удаляемого узла:\n");
+            scanf("%d", &current_data);
+            root = remove_node(root, current_data);
+        }
+        else if (operation == 4) {
+            printf("Количество узлов: %d\n", count_nodes(root));
+        }
+        else if (operation == 5) {
+            clean_tree(root);
+            root = NULL;
+            break;
+        }
+        else {
+            printf("Неверная операция\n");
+        }
     }
-    draw_tree(root, 0);
-    clean_tree(root);
+    if (root != NULL) {
+        clean_tree(root);
+    }
+    return 0;
 }
 
 Node* init(int data) {
