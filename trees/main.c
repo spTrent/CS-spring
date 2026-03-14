@@ -9,13 +9,12 @@ typedef struct Node {
 } Node;
 
 Node* init(int data);
-void add_node(int data, Node** root);
-void draw_tree(Node* root, int level);
+int add_node(int data, Node** root);
+int draw_tree(Node* root, int const level);
 Node* remove_node(Node* root, int data);
 int count_nodes(Node* root);
-int count_childs(Node* node);
-Node* find_minimum_greater(Node* node);
-void clean_tree(Node* root);
+int count_childs(Node const* node);
+void clear_tree(Node** root);
 
 int main(void) {
     srand(time(NULL));
@@ -29,9 +28,17 @@ int main(void) {
         printf("3. Удалить узел\n");
         printf("4. Посчитать количество вершин\n");
         printf("5. Закончить программу\n");
-        scanf("%d", &operation);
+        if (scanf("%d", &operation) != 1) {
+            printf("Неверный ввод");
+        }
+        char c;
+        while (scanf("%c", &c) == 1 && c != '\n') {};
         if (operation == 1) {
-            draw_tree(root, 0);
+            switch (draw_tree(root, 0)) {
+                case 0: printf("Ошибка отрисовки");
+                        break;
+                case 1: break;
+            }
         }
         else if (operation == 2) {
             printf("Введите значение нового узла:\n");
@@ -47,7 +54,7 @@ int main(void) {
             printf("Количество узлов: %d\n", count_nodes(root));
         }
         else if (operation == 5) {
-            clean_tree(root);
+            clear_tree(&root);
             root = NULL;
             break;
         }
@@ -56,7 +63,7 @@ int main(void) {
         }
     }
     if (root != NULL) {
-        clean_tree(root);
+        clear_tree(&root);
     }
     return 0;
 }
@@ -70,25 +77,25 @@ Node* init(int data) {
     return new_node;
 }
 
-void add_node(int data, Node** root) {
+int add_node(int data, Node** root) {
     if (*root == NULL) {
         Node* new_node = init(data);
         if (new_node == NULL) {
-            return;
+            return 0;
         }
         *root = new_node;
-        return;
+        return 1;
     }
     if (data > (*root)->data) {
-        add_node(data, &((*root)->right));
+        return add_node(data, &((*root)->right));
     } else if (data == (*root)->data) {
-        return;
+        return 2;
     } else {
-        add_node(data, &((*root)->left));
+        return add_node(data, &((*root)->left));
     }
 }
 
-int count_childs(Node* node) {
+int count_childs(Node const* node) {
     int res = 0;
     res += node->left != NULL;
     res += node->right != NULL;
@@ -115,7 +122,10 @@ Node* remove_node(Node* root, int data) {
             free(root);
             return temp;
         } else {
-            Node* min = find_minimum_greater(root->right);
+            Node* min = root->right;
+            while (min->left != NULL) {
+                min = min->left;
+            }
             root->data = min->data;
             root->right = remove_node(root->right, min->data);
         }
@@ -123,42 +133,31 @@ Node* remove_node(Node* root, int data) {
     return root;
 }
 
-Node* find_minimum_greater(Node* node) {
-    if (node->left == NULL) {
-        return node;
-    } else {
-        return find_minimum_greater(node->left);
-    }
+int count_nodes(Node* root) {
+    return (root == NULL) ? 0 : count_childs(root->left) + count_childs(root->right);
 }
 
-int count_nodes(Node* root) {
+int draw_tree(Node* root, int level) {
     if (root == NULL) {
         return 0;
-    }
-    int res = 1;
-    res += count_nodes(root->left) + count_nodes(root->right);
-    return res;
-}
-
-void draw_tree(Node* root, int level) {
-    if (root == NULL) {
-        return;
     }
     printf("%*s", level * 4, "");
     printf("%d\n", root->data);
     draw_tree(root->left, level + 1);
     draw_tree(root->right, level + 1);
+    return 1;
 }
 
-void clean_tree(Node* root) {
-    if (root == NULL) {
+void clear_tree(Node** root) {
+    if (*root == NULL) {
         return;
     }
-    if (root->left != NULL) {
-        clean_tree(root->left);
+    if ((*root)->left != NULL) {
+        clear_tree(&((*root)->left));
     }
-    if (root->right != NULL) {
-        clean_tree(root->right);
+    if ((*root)->right != NULL) {
+        clear_tree(&((*root)->right));
     }
-    free(root);
+    free(*root);
+    *root = NULL;
 }
