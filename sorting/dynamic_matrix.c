@@ -1,11 +1,11 @@
-#include <stdlib.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 int32_t append(int32_t* length, int32_t* capacity, int32_t** array, int32_t element) {
     if (length == NULL || capacity == NULL || array == NULL || *array == NULL) {
         return 1;
     }
-    if (*length < 0 || *capacity <= 0 ||  *length > *capacity) {
+    if (*length < 0 || *capacity <= 0 || *length > *capacity) {
         return 1;
     }
     if (*length < *capacity) {
@@ -47,7 +47,7 @@ int32_t bubble_sort(int32_t const length, int32_t* array) {
 int32_t binary_search(int32_t const length, int32_t* array, int32_t const element, int32_t* res) {
     if (length == 0 || array == NULL || res == NULL) {
         return 1;
-    } 
+    }
     int32_t left = 0;
     int32_t right = length - 1;
     while (left <= right) {
@@ -58,8 +58,7 @@ int32_t binary_search(int32_t const length, int32_t* array, int32_t const elemen
         }
         if (element < array[mid]) {
             right = mid - 1;
-        }
-        else if (element > array[mid]) {
+        } else if (element > array[mid]) {
             left = mid + 1;
         }
     }

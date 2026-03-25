@@ -1,8 +1,8 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "dynamic_matrix.h"
-#include <stdint.h>
 
+#include "dynamic_matrix.h"
 
 int32_t main() {
     int32_t* array = (int32_t*)malloc(sizeof(int32_t) * 11);
