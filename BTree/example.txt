@@ -1,0 +1,41 @@
+1 apple 1.1
+1 banana 2.2
+1 cherry 3.3
+1 date 4.4
+1 elder 5.5
+1 fig 6.6
+1 grape 7.7
+1 hazel 8.8
+1 iris 9.9
+1 jade 10.1
+1 kiwi 11.11
+1 lemon 12.12
+1 mango 13.13
+1 nut 14.14
+1 olive 15.15
+1 plum 16.16
+1 quince 17.17
+1 rose 18.18
+1 seed 19.19
+1 tree 20.20
+1 umbra 21.21
+1 vine 22.22
+1 wood 23.23
+1 xray 24.24
+1 yam 25.25
+1 zebra 26.26
+3
+4 kiwi
+4 ghost
+4 apple
+2 date
+2 nut
+2 zebra
+2 plum
+3
+1 aloe 27.27
+1 bean 28.28
+1 corn 29.29
+4 date
+2 grape
+3
