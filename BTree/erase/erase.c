@@ -1,6 +1,7 @@
-#include "../tree/btree.h"
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+
+#include "../tree/btree.h"
 
 int erase_node(BTreeNode* node, char* key);
 

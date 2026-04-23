@@ -21,8 +21,7 @@ void replace_unary_minus(const char* src, char* dest) {
             } else {
                 dest[j] = '-';
             }
-        }
-        else {
+        } else {
             dest[j] = current;
         }
         prev_char = dest[j];

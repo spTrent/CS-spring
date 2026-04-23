@@ -32,33 +32,31 @@ int main(void) {
             printf("Неверный ввод");
         }
         char c;
-        while (scanf("%c", &c) == 1 && c != '\n') {};
+        while (scanf("%c", &c) == 1 && c != '\n') {
+        };
         if (operation == 1) {
             switch (draw_tree(root, 0)) {
-                case 0: printf("Ошибка отрисовки");
-                        break;
-                case 1: break;
+                case 0:
+                    printf("Ошибка отрисовки");
+                    break;
+                case 1:
+                    break;
             }
-        }
-        else if (operation == 2) {
+        } else if (operation == 2) {
             printf("Введите значение нового узла:\n");
             scanf("%d", &current_data);
             add_node(current_data, &root);
-        }
-        else if (operation == 3) {
+        } else if (operation == 3) {
             printf("Введите значение удаляемого узла:\n");
             scanf("%d", &current_data);
             root = remove_node(root, current_data);
-        }
-        else if (operation == 4) {
+        } else if (operation == 4) {
             printf("Количество узлов: %d\n", count_nodes(root));
-        }
-        else if (operation == 5) {
+        } else if (operation == 5) {
             clear_tree(&root);
             root = NULL;
             break;
-        }
-        else {
+        } else {
             printf("Неверная операция\n");
         }
     }

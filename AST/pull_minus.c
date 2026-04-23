@@ -1,6 +1,7 @@
 #include "pull_minus.h"
-#include <string.h>
+
 #include <stdlib.h>
+#include <string.h>
 
 static int is_unary_minus(TreeNode* node) {
     if (node == NULL) return 0;
@@ -33,8 +34,7 @@ TreeNode* pull_out_minus(TreeNode* root) {
             free(right_minus);
 
             return root;
-        }
-        else if (left_has_minus) {
+        } else if (left_has_minus) {
             TreeNode* minus_node = root->left;
             root->left = minus_node->left;
             minus_node->left = root;
@@ -42,8 +42,7 @@ TreeNode* pull_out_minus(TreeNode* root) {
             minus_node->left = pull_out_minus(minus_node->left);
 
             return minus_node;
-        }
-        else if (right_has_minus) {
+        } else if (right_has_minus) {
             TreeNode* minus_node = root->right;
             root->right = minus_node->left;
             minus_node->left = root;

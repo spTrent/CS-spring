@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LEN 32
@@ -14,13 +14,10 @@ int get_precedence(const char* op) {
     return 0;
 }
 
-int is_right_associative(const char* op) {
-    return strcmp(op, "~") == 0 || strcmp(op, "^") == 0;
-}
+int is_right_associative(const char* op) { return strcmp(op, "~") == 0 || strcmp(op, "^") == 0; }
 
 void infix_to_rpn(char infix[MAX_TOKENS][MAX_TOKEN_LEN], int in_count,
                   char rpn[MAX_TOKENS][MAX_TOKEN_LEN], int* rpn_count) {
-
     char stack[MAX_TOKENS][MAX_TOKEN_LEN];
     int top = -1;
     *rpn_count = 0;
@@ -30,17 +27,14 @@ void infix_to_rpn(char infix[MAX_TOKENS][MAX_TOKEN_LEN], int in_count,
 
         if (isalnum(token[0])) {
             strcpy(rpn[(*rpn_count)++], token);
-        }
-        else if (strcmp(token, "(") == 0) {
+        } else if (strcmp(token, "(") == 0) {
             strcpy(stack[++top], token);
-        }
-        else if (strcmp(token, ")") == 0) {
+        } else if (strcmp(token, ")") == 0) {
             while (top != -1 && strcmp(stack[top], "(") != 0) {
                 strcpy(rpn[(*rpn_count)++], stack[top--]);
             }
             if (top != -1) top--;
-        }
-        else {
+        } else {
             while (top != -1 && strcmp(stack[top], "(") != 0) {
                 int p1 = get_precedence(token);
                 int p2 = get_precedence(stack[top]);

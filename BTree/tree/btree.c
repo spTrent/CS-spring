@@ -1,7 +1,7 @@
 #include "btree.h"
-#include <stdlib.h>
-#include <stdio.h>
 
+#include <stdio.h>
+#include <stdlib.h>
 
 BTree* create_tree() {
     BTree* tree = (BTree*)malloc(sizeof(BTree));

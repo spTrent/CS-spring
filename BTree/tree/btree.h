@@ -14,7 +14,7 @@ typedef struct BTreeNode {
 } BTreeNode;
 
 typedef struct {
-    BTreeNode *root;
+    BTreeNode* root;
     int t;
 } BTree;
 

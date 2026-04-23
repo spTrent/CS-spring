@@ -1,6 +1,7 @@
 #include "building.h"
-#include <string.h>
+
 #include <stdlib.h>
+#include <string.h>
 
 TreeNode* rpn_tokens_to_tree(char rpn_tokens[MAX_TOKENS][MAX_TOKEN_LEN], int token_count) {
     TreeNode* stack[256];
@@ -15,13 +16,12 @@ TreeNode* rpn_tokens_to_tree(char rpn_tokens[MAX_TOKENS][MAX_TOKEN_LEN], int tok
                 opNode->left = stack[top--];
             } else {
                 TreeNode* rightChild = stack[top--];
-                TreeNode* leftChild  = stack[top--];
+                TreeNode* leftChild = stack[top--];
                 opNode->right = rightChild;
-                opNode->left  = leftChild;
+                opNode->left = leftChild;
             }
             stack[++top] = opNode;
-        }
-        else {
+        } else {
             stack[++top] = create_node(token);
         }
     }

@@ -1,8 +1,9 @@
 #include "parse.h"
+
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 void tokenize(const char* expr, char tokens[MAX_TOKENS][MAX_TOKEN_LEN], int* token_count) {
     *token_count = 0;
@@ -23,8 +24,7 @@ void tokenize(const char* expr, char tokens[MAX_TOKENS][MAX_TOKEN_LEN], int* tok
 
             prev_char = tokens[*token_count][j - 1];
             (*token_count)++;
-        }
-        else {
+        } else {
             char op = expr[i];
             if (op == '-') {
                 if (prev_char == '\0' || strchr("(+-*/^", prev_char) != NULL) {

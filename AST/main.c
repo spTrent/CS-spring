@@ -1,11 +1,12 @@
-#include "parse.h"
-#include "building.h"
-#include "tree.h"
-#include "to_rpn.h"
-#include "pull_minus.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+#include "building.h"
+#include "parse.h"
+#include "pull_minus.h"
+#include "to_rpn.h"
+#include "tree.h"
 
 int main() {
     char input[256];

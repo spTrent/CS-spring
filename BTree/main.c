@@ -1,9 +1,10 @@
+#include <math.h>
+#include <stdio.h>
+
 #include "erase/erace.h"
 #include "find/find.h"
 #include "insert/insert.h"
 #include "tree/btree.h"
-#include <stdio.h>
-#include <math.h>
 
 int main(int argc, char *argv[]) {
     FILE *in = stdin;
@@ -14,7 +15,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    BTree* tree = create_tree();
+    BTree *tree = create_tree();
     if (!tree) {
         if (in != stdin) fclose(in);
         return 1;

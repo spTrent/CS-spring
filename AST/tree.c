@@ -1,7 +1,8 @@
 #include "tree.h"
+
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 
 TreeNode* create_node(const char* val) {
     TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
@@ -29,7 +30,6 @@ void print_infix(TreeNode* root) {
 
     int is_leaf = (root->left == NULL && root->right == NULL);
     int is_unary = (strcmp(root->value, "~") == 0);
-
 
     if (is_leaf == 1) {
         printf("%s", root->value);

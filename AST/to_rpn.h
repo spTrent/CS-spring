@@ -1,6 +1,6 @@
-#include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LEN 32
